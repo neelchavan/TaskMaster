@@ -1,0 +1,13 @@
+spring:
+  docker:
+    compose:
+      enabled: false
+
+taskmaster:
+  jwt:
+    secret: test-secret-key-must-be-at-least-32-bytes
+    access-token-minutes: 15
+    refresh-token-days: 7
+  attachments:
+    directory: build/test-attachments
+    max-bytes: 10485760

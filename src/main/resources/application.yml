@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: taskmaster
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskmaster
+    username: taskmaster
+    password: taskmaster
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 12MB
+  mvc:
+    problemdetails:
+      enabled: true
+  docker:
+    compose:
+      enabled: true
+      file: docker-compose.yml
+
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+
+taskmaster:
+  jwt:
+    # Override in any shared environment. HS256 needs at least 32 bytes.
+    secret: ${JWT_SECRET:dev-only-secret-change-me-32bytes-min}
+    access-token-minutes: 15
+    refresh-token-days: 7
+  attachments:
+    directory: ./data/attachments
+    max-bytes: 10485760
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
